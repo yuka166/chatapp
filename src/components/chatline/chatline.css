@@ -1,0 +1,47 @@
+.l-chat {
+    align-self: flex-start;
+}
+
+.r-chat {
+    align-self: flex-end;
+}
+
+.chat-wrap-details {
+    display: flex;
+    align-items: center;
+}
+
+.r-chat>.chat-wrap-details {
+    flex-direction: row-reverse;
+}
+
+.r-chat>.chat-username {
+    text-align: right;
+}
+
+.chat-username {
+    font-size: .8em;
+    color: rgb(0, 0, 0, .5);
+    padding: 2px 5px;
+}
+
+.r-chat>.chat-wrap-details>.chat-wrap-content {
+    background-color: var(--blue-color);
+    color: white;
+}
+
+.chat-wrap-content {
+    background-color: rgb(0, 0, 0, .2);
+    border-radius: 25px;
+    padding: 10px 20px;
+    word-break: break-all;
+    white-space: pre-line;
+}
+
+.l-chat>.chat-wrap-details>.chat-wrap-avatar {
+    margin-right: 5px;
+}
+
+.r-chat>.chat-wrap-details>.chat-wrap-avatar {
+    margin-left: 5px;
+}

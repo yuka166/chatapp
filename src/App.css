@@ -1,0 +1,151 @@
+.title {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.authform-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--black-color);
+    padding: 20px 30px;
+    border-radius: 5px;
+}
+
+.showpass-btn {
+    height: 40px;
+    width: 30px;
+    font-size: 1em;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.showpass-btn-active {
+    color: var(--blue-color);
+}
+
+.authform-wrap>div:last-child {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.authform-wrap .title {
+    margin: 10px 0;
+}
+
+.submit-btn {
+    width: 100%;
+    height: 40px;
+    padding: 10px 0;
+    border-radius: 10px;
+    background-color: var(--blue-color);
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.authform-wrap form>div {
+    margin-top: 20px;
+}
+
+.input-field {
+    position: relative;
+}
+
+.input-field input {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    height: 40px;
+    font-size: 1.2em;
+    border-bottom: 2px solid var(--black-color);
+    transition: all .25s ease-in-out;
+}
+
+.invalid-input {
+    border-color: red !important;
+}
+
+.invalid-input+label {
+    color: red !important;
+}
+
+.input-field #password,
+.input-field #re-password {
+    padding: 0 30px 0 0;
+}
+
+.input-field #username,
+.input-field #email {
+    width: 100%;
+}
+
+.input-field input:focus,
+.input-field input:valid {
+    border-bottom-color: var(--blue-color);
+}
+
+.input-field input:focus+label,
+.input-field input:valid+label,
+.input-field #email[value='']:focus+label,
+.input-field #email:not([value=''])+label {
+    top: 0;
+    transform: translate(0, -85%);
+    font-size: .8em;
+    color: var(--blue-color);
+}
+
+.input-field #email:not([value='']):invalid+label {
+    color: red;
+}
+
+.input-field #email:not([value='']):invalid {
+    border-color: red;
+}
+
+.input-field label,
+.input-field #email[value='']+label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    transition: all .25s ease-in-out;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.checkbox-field label {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.avatar {
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid var(--grey-color);
+}
+
+.sm-avatar {
+    width: 35px;
+    min-width: 35px;
+    height: 35px;
+}
+
+.md-avatar {
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+}
+
+.lg-avatar {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+}

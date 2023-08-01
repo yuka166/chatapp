@@ -1,0 +1,55 @@
+.chat-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+    position: relative;
+    /* width: 75%; */
+}
+
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    overflow-y: auto;
+}
+
+.chat-list>div {
+    width: 50%;
+    margin-top: 10px;
+}
+
+.chat-input-field {
+    width: calc(100% - 20px);
+    padding: 10px;
+    z-index: 999;
+    display: flex;
+    background-color: white;
+}
+
+.chat-input-field>textarea {
+    width: calc(100% - 22px);
+    line-height: 22px;
+    border: 1px solid var(--grey-color);
+    border-radius: 25px;
+    padding: 10px;
+    font-size: 1em;
+    outline: none;
+    resize: none;
+}
+
+.btn-scrolldown {
+    width: 40px;
+    min-height: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+    background-color: var(--blue-color);
+    color: white;
+    border-radius: 50%;
+    transition: all .25s;
+    cursor: pointer;
+    z-index: 99;
+}

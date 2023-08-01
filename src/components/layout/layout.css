@@ -1,0 +1,75 @@
+.app-wrap {
+    display: flex;
+}
+
+.app-wrap>div:nth-child(2) {
+    flex-grow: 1;
+}
+
+.side-menu {
+    padding: 20px 10px;
+    border-right: 1px solid var(--grey-color);
+    position: relative;
+}
+
+.sub-menu {
+    position: absolute;
+    right: -1px;
+    top: 0;
+    transform: translate(100%, 0);
+    background-color: white;
+    box-shadow: 1px 1px 5px 0px rgb(0, 0, 0, .2);
+    padding: 15px;
+}
+
+.search-field {
+    margin-bottom: 10px;
+}
+
+.search-field>input {
+    border: 1px solid var(--grey-color);
+    border-radius: 25px;
+    padding: 10px;
+    outline: none;
+}
+
+.search-user-details {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transition: all .2s;
+    border-radius: 10px;
+}
+
+.search-user-details:hover {
+    box-shadow: 0px 0px 5px 0px var(--grey-color);
+}
+
+.search-user-details>div:first-child {
+    margin-right: 5px;
+}
+
+.search-user-details>div:last-child {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+
+.side-menu>div {
+    width: fit-content;
+    margin: 0 auto 10px auto;
+}
+
+.side-menu svg {
+    font-size: 1.3em;
+}
+
+.menu-action>a {
+    color: var(--black-color);
+}
+
+.menu-action>button {
+    font-size: 1em;
+}

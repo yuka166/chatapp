@@ -1,0 +1,24 @@
+.chat {
+    display: flex;
+    height: 100dvh;
+}
+
+.no-chat {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0, .5);
+    font-size: 1.2em;
+}
+
+.friend-chat-list {
+    width: 20%;
+    height: calc(100% - 10px);
+    border-right: 1px solid var(--grey-color);
+    padding: 10px 10px 0 10px;
+}
+
+.friend-chat-list {
+    overflow-y: auto;
+}
