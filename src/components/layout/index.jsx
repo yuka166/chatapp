@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from 'js-cookie';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear, faArrowRightFromBracket, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { SocketContext } from '../../context/socket';
@@ -20,6 +21,7 @@ function Layout() {
         axios.get('https://nice-chat-app.fly.dev/auth/logout', { withCredentials: true })
             .then(() => {
                 socket.disconnect();
+                Cookies.remove('login');
                 navigate('/login')
             })
             .catch(() => alert('Có lỗi xảy ra'))

@@ -15,11 +15,11 @@ const privateRoutes = [
 ]
 
 const ProtectRoutes = () => {
-    return document.cookie.valueOf('logged') ? <Layout /> : <Navigate to='/login' />
+    return document.cookie.valueOf('auth') ? <Layout /> : <Navigate to='/login' />
 }
 
 const AuthRoutes = () => {
-    return !document.cookie.valueOf('logged') ? <Outlet /> : <Navigate to='/' replace='true' />
+    return !document.cookie.valueOf('auth') ? <Outlet /> : <Navigate to='/' replace='true' />
 }
 
 export { publicRoutes, privateRoutes, ProtectRoutes, AuthRoutes };

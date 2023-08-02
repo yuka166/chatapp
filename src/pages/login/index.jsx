@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,6 +30,9 @@ function LoginPage() {
                 }, { withCredentials: true })
                 .then(() => {
                     alert('Đăng nhập thành công!');
+                    document.querySelector('#staylogged').checked
+                        ? Cookies.set('login', true, { expires: 7 })
+                        : Cookies.set('login', true)
                     navigate('/');
                 })
                 .catch(() => alert('Sai tên đăng nhập hoặc mật khẩu'))
