@@ -10,13 +10,13 @@
 .chat-list {
     display: flex;
     flex-direction: column;
-    padding: 0 15px;
+    padding: 2px 10px;
     overflow-y: auto;
 }
 
 .chat-list>div {
     width: 50%;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .chat-input-field {
