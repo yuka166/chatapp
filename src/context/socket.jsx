@@ -1,7 +1,7 @@
 import { useState, createContext } from 'react';
 import { io } from 'socket.io-client';
 
-const socket = io('http://localhost:4000', {
+const socket = io('https://nice-chat-app.fly.dev', {
     withCredentials: true,
     transports: ['websocket'],
     autoConnect: false
