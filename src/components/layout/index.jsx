@@ -18,15 +18,16 @@ function Layout() {
     const navigate = useNavigate();
 
     function FindRoom(id) {
-        socket.emit('createRoom', id)
+        socket.emit('createRoom', id);
     }
 
     useEffect(() => {
         socket.on('sendRoom', data => {
-            socket.emit('joinRoom', data._id)
+            socket.emit('joinRoom', data._id);
         })
         socket.on('gotoBox', data => {
-            navigate(`/m/${data._id}`)
+            setSubMenu(false);
+            navigate(`/m/${data._id}`);
         })
     }, []);
 
