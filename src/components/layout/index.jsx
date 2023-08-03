@@ -18,12 +18,17 @@ function Layout() {
     const navigate = useNavigate();
 
     function FindRoom(id) {
-        axios.get(`https://nice-chat-app.fly.dev/room-exist/${id}`, { withCredentials: true })
-            .then(res => {
-                navigate(`/m/${res.data._id}`)
-            })
-            .catch(() => alert('Có lỗi xảy ra'))
+        socket.emit('createRoom', id)
     }
+
+    useEffect(() => {
+        socket.on('sendRoom', data => {
+            socket.emit('joinRoom', data._id)
+        })
+        socket.on('gotoBox', data => {
+            navigate(`/m/${data._id}`)
+        })
+    }, []);
 
     function LogOut() {
         axios.get('https://nice-chat-app.fly.dev/auth/logout', { withCredentials: true })

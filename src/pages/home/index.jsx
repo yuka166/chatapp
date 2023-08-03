@@ -16,14 +16,14 @@ function HomePage() {
 
     useEffect(() => {
         socket.connect();
-        axios.get('https://nice-chat-app.fly.dev/rooms', { withCredentials: true })
-            .then((res) => {
-                setChatList(res.data)
-                setIsLoading(false)
-                socket.emit('joinRooms', res.data)
-            })
-            .catch((e) => console.log(e))
-
+        socket.emit('getRooms')
+        socket.on('allRooms', data => {
+            setChatList(data)
+            setIsLoading(false)
+        })
+        socket.on('setRoom', () => {
+            socket.emit('getRooms')
+        })
     }, []);
 
     return (
@@ -34,9 +34,18 @@ function HomePage() {
                         let name = '', content = '';
                         item.members.length > 1 ? name = item.name : name = item.members[0].username
                         item.latestChat.length > 0 ? content = item.latestChat[0].content : content = ''
-                        return (
-                            <FriendChat key={i} name={name} content={content} id={item._id} />
-                        )
+                        if (item.members.length < 2) {
+                            if (item.latestChat.length > 0) {
+                                return (
+                                    <FriendChat key={i} name={name} content={content} id={item._id} />
+                                )
+                            }
+                        }
+                        else {
+                            return (
+                                <FriendChat key={i} name={name} content={content} id={item._id} />
+                            )
+                        }
                     })}
                 </div>
                 {outlet || <div className='no-chat'>Select a chat to start messaging...</div>}
