@@ -47,6 +47,7 @@ function RegisterPage() {
         }
 
         if (username.trim() !== '' && email.trim() !== ''
+            && /[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/.test(email.trim())
             && password.trim() !== '' && password === rePassword) {
             axios.post('https://nice-chat-app.fly.dev/auth/register',
                 {
@@ -58,7 +59,14 @@ function RegisterPage() {
                     alert('Đăng ký thành công!');
                     navigate('/login');
                 })
-                .catch((e) => console.log(e))
+                .catch((e) => {
+                    if (e.response.data.error.code === 11000) {
+                        alert('Tên đăng nhập đã được sử dụng!');
+                    }
+                    else {
+                        alert('Có lỗi xảy ra!');
+                    }
+                })
         }
     }
 
