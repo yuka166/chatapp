@@ -17,6 +17,14 @@ function Layout() {
     const socket = useContext(SocketContext);
     const navigate = useNavigate();
 
+    function FindRoom(id) {
+        axios.get(`/room-exist/${id}`, { withCredentials: true })
+            .then(res => {
+                navigate(`/m/${res.data._id}`)
+            })
+            .catch(() => alert('Có lỗi xảy ra'))
+    }
+
     function LogOut() {
         axios.get('https://nice-chat-app.fly.dev/auth/logout', { withCredentials: true })
             .then(() => {
@@ -58,20 +66,12 @@ function Layout() {
                         {userList.map(user => {
                             console.log(user)
                             return (
-                                <div className="search-user-details" key={user._id}>
+                                <button onClick={() => FindRoom(user._id)} className="search-user-details" key={user._id}>
                                     <div className="md-avatar"><img src={avatar} className="avatar" /></div>
                                     <div>{user.username}</div>
-                                </div>
+                                </button>
                             )
                         })}
-                        {/* <div className="search-user-details">
-                            <div className="md-avatar"><img src={avatar} className="avatar" /></div>
-                            <div>têntêntêntêntêntêntêntêntêntêntên</div>
-                        </div>
-                        <div className="search-user-details">
-                            <div className="md-avatar"><img src={avatar} className="avatar" /></div>
-                            <div>tên tên têntêntên tên tên tên tên tên v tên tên tên</div>
-                        </div> */}
                     </div>
                 </div>}
             </div>
