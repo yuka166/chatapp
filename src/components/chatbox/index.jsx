@@ -38,6 +38,10 @@ function ChatBox() {
             }
         })
 
+        return () => {
+            socket.off('getMessage');
+        };
+
     }, [id]);
 
     useEffect(() => {
