@@ -18,7 +18,7 @@ function Layout() {
     const navigate = useNavigate();
 
     function FindRoom(id) {
-        axios.get(`/room-exist/${id}`, { withCredentials: true })
+        axios.get(`https://nice-chat-app.fly.dev/room-exist/${id}`, { withCredentials: true })
             .then(res => {
                 navigate(`/m/${res.data._id}`)
             })
