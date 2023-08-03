@@ -14,6 +14,7 @@ function ChatBox() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [chatHistory, setChatHistory] = useState([]);
+    const [roomDetails, setRoomDetails] = useState([]);
     const { socket, userID } = useContext(SocketContext);
 
     useEffect(() => {
@@ -22,6 +23,12 @@ function ChatBox() {
             .then((res) => {
                 setChatHistory(res.data)
                 setIsLoading(false)
+            })
+            .catch((e) => console.log(e))
+
+        axios.get(`https://nice-chat-app.fly.dev/rooms/${id}`, { withCredentials: true })
+            .then((res) => {
+                setRoomDetails(res.data)
             })
             .catch((e) => console.log(e))
 
@@ -95,6 +102,10 @@ function ChatBox() {
 
     return (
         <div className="chat-wrap">
+            <div className='chatbox-details'>
+                <div className='md-avatar'><img src={avatar} className='avatar' alt='' /></div>
+                {roomDetails.length > 0 && <div className='chatbox-details-name'>{roomDetails[0].members[0].username}</div>}
+            </div>
             <div className='chat-list'>
                 {isLoading ? <div>loading</div> : chatHistory.map((item, i) => {
                     let sender;
