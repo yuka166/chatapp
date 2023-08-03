@@ -9,7 +9,7 @@
 
 .chatbox-details {
     margin-bottom: auto;
-    padding: 10px 10px;
+    padding: 10px;
     box-shadow: 0px 2px 2px 0px var(--grey-color);
     display: flex;
     align-items: center;
@@ -19,6 +19,24 @@
     margin-left: 10px;
     font-weight: bold;
     font-size: 1.1em;
+}
+
+.chatbox-details-backbtn {
+    display: none;
+}
+
+.chatbox-details-backbtn>a {
+    padding: 10px 15px;
+}
+
+@media screen and (max-width:550px) {
+    .chatbox-details-backbtn {
+        display: block;
+    }
+
+    .chatbox-details {
+        padding: 10px 0;
+    }
 }
 
 .chat-list {
@@ -62,6 +80,7 @@
     font-size: 1.2em;
     background-color: var(--blue-color);
     color: white;
+    border: 2px solid white;
     border-radius: 50%;
     transition: all .25s;
     cursor: pointer;

@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
-import { useOutlet } from 'react-router-dom';
+import { useOutlet, useParams } from 'react-router-dom';
 import axios from 'axios';
 import FriendChat from '../../components/friendchat';
 import { SocketProvider, SocketContext } from '../../context/socket';
 import './home.css';
 
 function HomePage() {
+
+    const { id } = useParams();
 
     const [isLoading, setIsLoading] = useState(true);
     const [chatList, setChatList] = useState([]);
@@ -24,7 +26,22 @@ function HomePage() {
         socket.on('setRoom', () => {
             socket.emit('getRooms')
         })
+
+        window.addEventListener('resize', () => {
+            document.querySelector('.chat').style.height = `${window.innerHeight}px`;
+            console.log(document.querySelector('.chat').style.height)
+        })
     }, []);
+
+    useEffect(() => {
+        if (window.innerWidth < 551) {
+            id ? document.querySelector('.friend-chat-list').style.display = 'none'
+                : document.querySelector('.friend-chat-list').style.display = 'block'
+        }
+        else {
+            document.querySelector('.friend-chat-list').style.display = 'block'
+        }
+    }, [id]);
 
     return (
         <SocketProvider>

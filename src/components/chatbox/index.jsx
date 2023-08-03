@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext, memo } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { SocketContext } from '../../context/socket';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import ChatLine from '../chatline';
 import avatar from '../../assets/images/avatar.jpg';
 import './chatbox.css';
@@ -55,7 +55,8 @@ function ChatBox() {
     useEffect(() => {
         const chatInput = document.querySelector('.chat-input-field>textarea');
         const chatBox = document.querySelector('.chat-list');
-        const scrollDownBtn = document.querySelector('.btn-scrolldown')
+        const scrollDownBtn = document.querySelector('.btn-scrolldown');
+
         chatInput.addEventListener('input', (e) => {
             if (e.target.scrollHeight / 22 < 7) {
                 chatInput.style.height = 'auto';
@@ -64,11 +65,13 @@ function ChatBox() {
             }
             chatInput.scrollTop = e.target.scrollHeight - 20;
         })
+
         chatBox.addEventListener('scroll', (e) => {
             chatBox.scrollTop < chatBox.scrollHeight - chatBox.offsetHeight - 100
                 ? scrollDownBtn.style.transform = 'translate(-50%, -250%)'
                 : scrollDownBtn.style.transform = 'translate(-50%, -50%)'
         })
+
     }, []);
 
     const scrollToBottom = () => {
@@ -107,6 +110,7 @@ function ChatBox() {
     return (
         <div className="chat-wrap">
             <div className='chatbox-details'>
+                <div className='chatbox-details-backbtn'><Link to='/'><FontAwesomeIcon icon={faArrowLeft} /></Link></div>
                 <div className='md-avatar'><img src={avatar} className='avatar' alt='' /></div>
                 {roomDetails.length > 0 && <div className='chatbox-details-name'>{roomDetails[0].members[0].username}</div>}
             </div>

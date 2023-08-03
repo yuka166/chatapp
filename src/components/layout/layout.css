@@ -20,6 +20,7 @@
     background-color: white;
     box-shadow: 1px 1px 5px 0px rgb(0, 0, 0, .2);
     padding: 15px;
+    z-index: 999;
 }
 
 .search-field {

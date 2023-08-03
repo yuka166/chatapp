@@ -6,6 +6,20 @@
     transition: all .2s;
 }
 
+@media screen and (max-width:768px) {
+    .friend-chat {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width:550px) {
+    .friend-chat {
+        flex-direction: row;
+        text-align: left;
+    }
+}
+
 .friend-chat[data-active='active'] {
     background-color: rgb(81 79 255 / 10%);
 }

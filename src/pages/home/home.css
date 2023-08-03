@@ -22,3 +22,14 @@
 .friend-chat-list {
     overflow-y: auto;
 }
+
+@media screen and (max-width:550px) {
+    .friend-chat-list {
+        width: 100%;
+        border: 0;
+    }
+
+    .no-chat {
+        display: none;
+    }
+}
