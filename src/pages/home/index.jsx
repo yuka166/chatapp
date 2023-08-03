@@ -27,8 +27,8 @@ function HomePage() {
             socket.emit('getRooms')
         })
 
-        window.addEventListener('resize', () => {
-            document.querySelector('.chat').style.height = `${window.innerHeight}px`;
+        window.visualViewport.addEventListener('resize', () => {
+            document.querySelector('.chat').style.height = `${window.visualViewport.height}px`;
         })
     }, []);
 
