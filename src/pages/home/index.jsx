@@ -29,7 +29,7 @@ function HomePage() {
 
         window.addEventListener('resize', () => {
             document.querySelector('.chat').style.height = `${window.innerHeight}px`;
-            console.log(document.querySelector('.chat').style.height)
+            alert('keyboard open')
         })
     }, []);
 

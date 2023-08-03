@@ -29,16 +29,6 @@
     padding: 10px 15px;
 }
 
-@media screen and (max-width:550px) {
-    .chatbox-details-backbtn {
-        display: block;
-    }
-
-    .chatbox-details {
-        padding: 10px 0;
-    }
-}
-
 .chat-list {
     display: flex;
     flex-direction: column;
@@ -85,4 +75,24 @@
     transition: all .25s;
     cursor: pointer;
     z-index: 99;
+}
+
+@media screen and (max-width:550px) {
+    .chatbox-details-backbtn {
+        display: block;
+    }
+
+    .chatbox-details {
+        padding: 10px 0;
+    }
+
+    .chat-list>div {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width:375px) {
+    .chat-list>div {
+        width: 75%;
+    }
 }
