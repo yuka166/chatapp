@@ -29,7 +29,6 @@ function HomePage() {
 
         window.addEventListener('resize', () => {
             document.querySelector('.chat').style.height = `${window.innerHeight}px`;
-            alert('keyboard open')
         })
     }, []);
 

@@ -26,6 +26,7 @@
 }
 
 .chatbox-details-backbtn>a {
+    color: var(--black-color);
     padding: 10px 15px;
 }
 
