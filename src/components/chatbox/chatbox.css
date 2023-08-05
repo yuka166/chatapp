@@ -58,6 +58,7 @@
     font-size: 1em;
     outline: none;
     resize: none;
+    font-family: system-ui;
 }
 
 .btn-scrolldown {

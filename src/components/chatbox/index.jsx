@@ -6,6 +6,7 @@ import { SocketContext } from '../../context/socket';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import ChatLine from '../chatline';
+import ChatInput from './chatInput';
 import avatar from '../../assets/images/avatar.jpg';
 import './chatbox.css';
 
@@ -81,43 +82,6 @@ function ChatBox() {
             behavior: 'smooth'
         })
     };
-
-    const ChatInput = memo(() => {
-        useEffect(() => {
-            const chatInput = document.querySelector('.chat-input-field>textarea');
-            chatInput.addEventListener('input', (e) => {
-                if (e.target.scrollHeight / 22 < 7) {
-                    chatInput.style.height = 'auto';
-                    let scrollHeight = e.target.scrollHeight - 20;
-                    chatInput.style.height = `${scrollHeight}px`;
-                }
-                chatInput.scrollTop = e.target.scrollHeight - 20;
-            })
-        }, []);
-        const [message, setMessage] = useState('');
-        const sendMessage = (e) => {
-            if (e.keyCode === 13 && e.shiftKey === false) {
-                if (message.trim() !== '') {
-                    const data = {
-                        roomID: id,
-                        content: message
-                    }
-                    socket.emit('sendMessage', data)
-                    setMessage('');
-                    document.querySelector('.chat-input-field>textarea').style.height = 'auto';
-                }
-                e.preventDefault();
-            }
-        }
-        return (
-            <div className='chat-input-field'>
-                <textarea rows={1} placeholder='Send a message...'
-                    onChange={e => setMessage(e.target.value)}
-                    onKeyDown={sendMessage}
-                    value={message} />
-            </div>
-        )
-    })
 
     return (
         <div className="chat-wrap">
