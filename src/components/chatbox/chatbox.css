@@ -39,7 +39,6 @@
 
 .chat-list>div {
     width: 50%;
-    margin-top: 5px;
 }
 
 .chat-input-field {
@@ -83,6 +82,7 @@
     width: 100%;
     font-size: .8em;
     color: var(--darkgrey-color);
+    margin: 10px 0;
 }
 
 @media screen and (max-width:550px) {

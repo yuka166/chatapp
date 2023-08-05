@@ -18,6 +18,8 @@ function ChatBox() {
     const [roomDetails, setRoomDetails] = useState([]);
     const { socket, userID } = useContext(SocketContext);
 
+    let multiChat = [];
+
     useEffect(() => {
         setIsLoading(true)
         axios.get(`https://nice-chat-app.fly.dev/chats/${id}`, { withCredentials: true })
@@ -46,7 +48,11 @@ function ChatBox() {
     }, [id]);
 
     useEffect(() => {
-        scrollToBottom();
+        const chatBox = document.querySelector('.chat-list');
+        if (chatBox.scrollTop > chatBox.scrollHeight - chatBox.offsetHeight - 200
+            || chatHistory[chatHistory.length - 1].authorID === userID) {
+            scrollToBottom();
+        }
     }, [chatHistory]);
 
     useEffect(() => {
@@ -54,23 +60,17 @@ function ChatBox() {
     }, [isLoading]);
 
     useEffect(() => {
-        const chatInput = document.querySelector('.chat-input-field>textarea');
         const chatBox = document.querySelector('.chat-list');
         const scrollDownBtn = document.querySelector('.btn-scrolldown');
-
-        chatInput.addEventListener('input', (e) => {
-            if (e.target.scrollHeight / 22 < 7) {
-                chatInput.style.height = 'auto';
-                let scrollHeight = e.target.scrollHeight - 20;
-                chatInput.style.height = `${scrollHeight}px`;
-            }
-            chatInput.scrollTop = e.target.scrollHeight - 20;
-        })
 
         chatBox.addEventListener('scroll', (e) => {
             chatBox.scrollTop < chatBox.scrollHeight - chatBox.offsetHeight - 100
                 ? scrollDownBtn.style.transform = 'translate(-50%, -250%)'
                 : scrollDownBtn.style.transform = 'translate(-50%, -50%)'
+        })
+
+        window.addEventListener('resize', () => {
+            scrollToBottom();
         })
 
     }, []);
@@ -83,6 +83,17 @@ function ChatBox() {
     };
 
     const ChatInput = memo(() => {
+        useEffect(() => {
+            const chatInput = document.querySelector('.chat-input-field>textarea');
+            chatInput.addEventListener('input', (e) => {
+                if (e.target.scrollHeight / 22 < 7) {
+                    chatInput.style.height = 'auto';
+                    let scrollHeight = e.target.scrollHeight - 20;
+                    chatInput.style.height = `${scrollHeight}px`;
+                }
+                chatInput.scrollTop = e.target.scrollHeight - 20;
+            })
+        }, []);
         const [message, setMessage] = useState('');
         const sendMessage = (e) => {
             if (e.keyCode === 13 && e.shiftKey === false) {
@@ -92,7 +103,7 @@ function ChatBox() {
                         content: message
                     }
                     socket.emit('sendMessage', data)
-                    setMessage('')
+                    setMessage('');
                     document.querySelector('.chat-input-field>textarea').style.height = 'auto';
                 }
                 e.preventDefault();
@@ -118,6 +129,7 @@ function ChatBox() {
             <div className='chat-list'>
                 {isLoading ? <div>loading</div> : chatHistory.map((item, i) => {
                     let sender;
+
                     const timeOptions = {
                         lastDay: 'dd LT',
                         sameDay: 'LT',
@@ -125,26 +137,38 @@ function ChatBox() {
                         lastWeek: 'dd LT',
                         nextWeek: 'dd LT',
                         sameElse: 'LT[,] D MMMM, YYYY'
-                    };
-                    const time = moment(item.createdAt).calendar(timeOptions);
-                    const prevTime = i > 0 ? moment(chatHistory[i - 1].createdAt) : ''
+                    },
+                        time = moment(item.createdAt).calendar(timeOptions),
+                        prevTime = i > 0 ? moment(chatHistory[i - 1].createdAt) : '';
                     let timeDiff = moment(item.createdAt).diff(prevTime, 'minutes') < 17;
+
+                    // console.log(moment(item.createdAt).diff(prevTime, 'second'))
+
                     if (item.sender) {
                         sender = JSON.parse(item.sender)
                     }
                     else {
                         userID === item.authorID ? sender = true : sender = false
                     }
-                    return (
-                        <Fragment key={i}>
-                            {!timeDiff && <div className='time-send'>{time}</div>}
-                            <ChatLine username={item.authorName.username}
-                                avatar={avatar}
-                                content={item.content}
-                                sender={sender}
-                                time={time} />
-                        </Fragment>
-                    )
+
+                    // console.log(item.authorID + ', ' + (chatHistory[i + 1] && chatHistory[i + 1].authorID))
+                    if (item.authorID === (chatHistory[i - 1] && chatHistory[i - 1].authorID)
+                        && moment(item.createdAt).diff(prevTime, 'second') < 61) {
+                        multiChat.push(item.content)
+                    }
+                    else {
+                        multiChat = [item.content];
+                        return (
+                            <Fragment key={i}>
+                                {!timeDiff && <div className='time-send'>{time}</div>}
+                                <ChatLine username={item.authorName.username}
+                                    avatar={avatar}
+                                    content={multiChat}
+                                    sender={sender}
+                                    time={time} />
+                            </Fragment>
+                        )
+                    }
                 })}
             </div>
             <button onClick={scrollToBottom} className='btn-scrolldown'><FontAwesomeIcon icon={faArrowDown} /></button>

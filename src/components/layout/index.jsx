@@ -66,11 +66,9 @@ function Layout() {
                 {subMenu && <div className="sub-menu">
                     <div className="search-field">
                         <input placeholder="Find user..." value={searchInput} onChange={e => setSearchInput(e.target.value)} />
-                        {/* <button type="button">search user</button> */}
                     </div>
                     <div className="result-field">
                         {userList.map(user => {
-                            console.log(user)
                             return (
                                 <button onClick={() => FindRoom(user._id)} className="search-user-details" key={user._id}>
                                     <div className="md-avatar"><img src={avatar} className="avatar" /></div>

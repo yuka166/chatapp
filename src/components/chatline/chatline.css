@@ -8,7 +8,7 @@
 
 .chat-wrap-details {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .r-chat>.chat-wrap-details {
@@ -16,16 +16,22 @@
 }
 
 .r-chat>.chat-username {
-    text-align: right;
+    margin-right: 45px;
+    margin-left: auto;
+}
+
+.l-chat>.chat-username {
+    margin-left: 45px;
 }
 
 .chat-username {
     font-size: .8em;
     color: rgb(0, 0, 0, .5);
-    padding: 2px 5px;
+    padding: 0 5px;
+    width: fit-content;
 }
 
-.r-chat>.chat-wrap-details>.chat-wrap-content {
+.r-chat>.chat-wrap-details .chat-wrap-content {
     background-color: var(--blue-color);
     color: white;
 }
@@ -33,10 +39,37 @@
 .chat-wrap-content {
     background-color: rgb(0, 0, 0, .2);
     border-radius: 25px;
-    padding: 10px 15px;
+    padding: 7.5px 15px;
     word-break: break-word;
     white-space: pre-line;
     position: relative;
+    width: fit-content;
+}
+
+.l-chat .chat-wrap-content.multi-line {
+    border-radius: 5px 25px 25px 5px;
+    margin: 2px 0;
+}
+
+.l-chat .chat-wrap-content.multi-line:first-child {
+    border-radius: 25px 25px 25px 5px;
+}
+
+.l-chat .chat-wrap-content.multi-line:last-child {
+    border-radius: 5px 25px 25px 25px;
+}
+
+.r-chat .chat-wrap-content.multi-line {
+    border-radius: 25px 5px 5px 25px;
+    margin: 2px 0 2px auto;
+}
+
+.r-chat .chat-wrap-content.multi-line:first-child {
+    border-radius: 25px 25px 5px 25px;
+}
+
+.r-chat .chat-wrap-content.multi-line:last-child {
+    border-radius: 25px 5px 25px 25px;
 }
 
 .chat-wrap-content::after {
@@ -47,7 +80,7 @@
     color: var(--black-color);
     background-color: var(--grey-color);
     border-radius: 10px;
-    padding: 5px 10px;
+    padding: 10px;
     font-size: .8em;
     opacity: 0;
 }
@@ -72,8 +105,15 @@
 }
 
 .chat-wrap-content>a {
-    color: white;
     text-decoration: underline;
+}
+
+.r-chat .chat-wrap-content>a {
+    color: white;
+}
+
+.l-chat .chat-wrap-content>a {
+    color: var(--black-color);
 }
 
 .l-chat>.chat-wrap-details>.chat-wrap-avatar {
