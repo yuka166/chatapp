@@ -36,8 +36,14 @@
     color: var(--black-color);
 }
 
-.friend-chat-name,
 .friend-chat-latest {
+    color: rgb(0, 0, 0, .6);
+    font-size: 0.9em;
+    display: flex;
+}
+
+.friend-chat-name,
+.friend-chat-latest>div:first-child {
     display: -webkit-box;
     overflow: hidden;
     -webkit-line-clamp: 1;
@@ -45,11 +51,15 @@
     word-break: break-all;
 }
 
-.friend-chat-name {
-    font-weight: bold;
+.friend-chat-latest>div:last-child {
+    width: fit-content;
+    white-space: nowrap;
 }
 
-.friend-chat-latest {
-    color: rgb(0, 0, 0, .6);
-    font-size: 0.9em;
+.friend-chat-latest>span {
+    margin: 0 5px;
+}
+
+.friend-chat-name {
+    font-weight: bold;
 }

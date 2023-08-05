@@ -11,7 +11,9 @@ function FriendChat(props) {
             <div className='friend-chat-avatar lg-avatar'><img src={avatar} className='avatar' alt='' /></div>
             <div className="friend-chat-details">
                 <div className='friend-chat-name'>{props.name}</div>
-                <div className='friend-chat-latest'>{props.content}</div>
+                <div className='friend-chat-latest'>
+                    <div>{props.content}</div><span>•</span><div>{props.time}</div>
+                </div>
             </div>
         </Link>
     );

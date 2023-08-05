@@ -78,6 +78,13 @@
     z-index: 99;
 }
 
+.chat-list>.time-send {
+    text-align: center;
+    width: 100%;
+    font-size: .8em;
+    color: var(--darkgrey-color);
+}
+
 @media screen and (max-width:550px) {
     .chatbox-details-backbtn {
         display: block;

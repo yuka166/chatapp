@@ -36,6 +36,44 @@
     padding: 10px 15px;
     word-break: break-word;
     white-space: pre-line;
+    position: relative;
+}
+
+.chat-wrap-content::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    width: max-content;
+    top: 50%;
+    color: var(--black-color);
+    background-color: var(--grey-color);
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: .8em;
+    opacity: 0;
+}
+
+.chat-wrap-content:not(:hover)::after {
+    transition: all .2s;
+}
+
+.r-chat .chat-wrap-content::after {
+    left: -5px;
+    transform: translate(-100%, -50%);
+}
+
+.l-chat .chat-wrap-content::after {
+    right: -5px;
+    transform: translate(100%, -50%);
+}
+
+.chat-wrap-content:hover::after {
+    transition: all .2s .5s;
+    opacity: 1;
+}
+
+.chat-wrap-content>a {
+    color: white;
+    text-decoration: underline;
 }
 
 .l-chat>.chat-wrap-details>.chat-wrap-avatar {

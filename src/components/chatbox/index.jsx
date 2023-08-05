@@ -1,6 +1,7 @@
-import { useState, useEffect, useContext, memo } from 'react';
+import { useState, useEffect, useContext, memo, Fragment } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment/moment';
 import { SocketContext } from '../../context/socket';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -117,6 +118,17 @@ function ChatBox() {
             <div className='chat-list'>
                 {isLoading ? <div>loading</div> : chatHistory.map((item, i) => {
                     let sender;
+                    const timeOptions = {
+                        lastDay: 'dd LT',
+                        sameDay: 'LT',
+                        nextDay: 'dd LT',
+                        lastWeek: 'dd LT',
+                        nextWeek: 'dd LT',
+                        sameElse: 'LT[,] D MMMM, YYYY'
+                    };
+                    const time = moment(item.createdAt).calendar(timeOptions);
+                    const prevTime = i > 0 ? moment(chatHistory[i - 1].createdAt) : ''
+                    let timeDiff = moment(item.createdAt).diff(prevTime, 'minutes') < 17;
                     if (item.sender) {
                         sender = JSON.parse(item.sender)
                     }
@@ -124,10 +136,14 @@ function ChatBox() {
                         userID === item.authorID ? sender = true : sender = false
                     }
                     return (
-                        <ChatLine key={i} username={item.authorName.username}
-                            avatar={avatar}
-                            content={item.content}
-                            sender={sender} />
+                        <Fragment key={i}>
+                            {!timeDiff && <div className='time-send'>{time}</div>}
+                            <ChatLine username={item.authorName.username}
+                                avatar={avatar}
+                                content={item.content}
+                                sender={sender}
+                                time={time} />
+                        </Fragment>
                     )
                 })}
             </div>

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useOutlet, useParams } from 'react-router-dom';
-import axios from 'axios';
+import moment from 'moment/moment';
+import 'moment/locale/vi';
 import FriendChat from '../../components/friendchat';
 import { SocketProvider, SocketContext } from '../../context/socket';
 import './home.css';
@@ -53,13 +54,15 @@ function HomePage() {
                         if (item.members.length < 2) {
                             if (item.latestChat.length > 0) {
                                 return (
-                                    <FriendChat key={i} name={name} content={content} id={item._id} />
+                                    <FriendChat key={i} name={name}
+                                        content={content} id={item._id} time={moment(item.latestChat[0].createdAt).fromNow(true)} />
                                 )
                             }
                         }
                         else {
                             return (
-                                <FriendChat key={i} name={name} content={content} id={item._id} />
+                                <FriendChat key={i} name={name}
+                                    content={content} id={item._id} time={moment(item.latestChat[0].createdAt).fromNow(true)} />
                             )
                         }
                     })}
