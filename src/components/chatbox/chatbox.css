@@ -111,3 +111,17 @@
         width: 80%;
     }
 }
+
+.dark .chat-input-field,
+.dark .chat-input-field>textarea {
+    background-color: var(--black-color);
+    color: white;
+}
+
+.dark .btn-scrolldown {
+    border-color: var(--black-color);
+}
+
+.dark .chatbox-details {
+    box-shadow: 0px 2px 2px 0px var(--lightwhite-color);
+}

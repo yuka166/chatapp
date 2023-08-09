@@ -117,7 +117,6 @@
     display: flex;
     align-items: center;
     user-select: none;
-    color: rgba(0, 0, 0, 0.6);
 }
 
 .checkbox-field label {
@@ -148,4 +147,32 @@
     width: 50px;
     min-width: 50px;
     height: 50px;
+}
+
+/* DARK */
+
+.dark .authform-wrap label {
+    color: white;
+}
+
+.dark .authform-wrap>div:last-child {
+    color: white;
+}
+
+.dark .authform-wrap>div:last-child>a {
+    color: white;
+    font-weight: bold;
+}
+
+.dark .input-field input {
+    background-color: var(--black-color);
+    color: white;
+}
+
+.dark .showpass-btn {
+    color: var(--lightwhite-color);
+}
+
+.dark .showpass-btn-active {
+    color: var(--blue-color)
 }

@@ -74,4 +74,15 @@
 
 .menu-action>button {
     font-size: 1em;
+    color: var(--black-color);
+}
+
+.dark .sub-menu {
+    background-color: var(--black-color);
+    box-shadow: 1px 1px 5px 0px var(--lightwhite-color);
+}
+
+.dark .menu-action>a,
+.dark .menu-action>button {
+    color: white;
 }

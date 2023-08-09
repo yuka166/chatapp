@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear, faArrowRightFromBracket, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faGear, faArrowRightFromBracket, faMagnifyingGlass, faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { SocketContext } from '../../context/socket';
 import avatar from '../../assets/images/avatar.jpg';
 import './layout.css';
@@ -41,6 +41,17 @@ function Layout() {
             .catch(() => alert('Có lỗi xảy ra'))
     }
 
+    function ChangeBgColor() {
+        if (localStorage.getItem('theme')) {
+            localStorage.removeItem('theme');
+            document.body.classList.remove('dark');
+        }
+        else {
+            localStorage.setItem('theme', 'dark');
+            document.body.classList.add('dark');
+        }
+    }
+
     useEffect(() => {
         if (searchInput.trim().length > 0) {
             axios.get('https://nice-chat-app.fly.dev/users/' + searchInput.trim(), { withCredentials: true })
@@ -63,6 +74,7 @@ function Layout() {
                 <div className="menu-action"><button type="button" onClick={ToggleSubMenu}><FontAwesomeIcon icon={faMagnifyingGlass} /></button></div>
                 <div className="menu-action"><a href="#"><FontAwesomeIcon icon={faGear} /></a></div>
                 <div className="menu-action"><button onClick={LogOut}><FontAwesomeIcon icon={faArrowRightFromBracket} /></button></div>
+                <div className="menu-action"><button onClick={ChangeBgColor}><FontAwesomeIcon icon={faLightbulb} /></button></div>
                 {subMenu && <div className="sub-menu">
                     <div className="search-field">
                         <input placeholder="Find user..." value={searchInput} onChange={e => setSearchInput(e.target.value)} />

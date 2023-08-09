@@ -33,3 +33,7 @@
         display: none;
     }
 }
+
+.dark .no-chat {
+    color: var(--lightwhite-color);
+}

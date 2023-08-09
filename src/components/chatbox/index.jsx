@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import ChatLine from '../chatline';
 import ChatInput from './chatInput';
+import { ChatSkeleton } from '../ui/skeleton';
 import avatar from '../../assets/images/avatar.jpg';
 import './chatbox.css';
 
@@ -91,49 +92,55 @@ function ChatBox() {
                 {roomDetails.length > 0 && <div className='chatbox-details-name'>{roomDetails[0].members[0].username}</div>}
             </div>
             <div className='chat-list'>
-                {isLoading ? <div>loading</div> : chatHistory.map((item, i) => {
-                    let sender;
+                {isLoading
+                    ? <>
+                        <ChatSkeleton position={'r-chat'} line={2} />
+                        <ChatSkeleton position={'l-chat'} line={4} />
+                        <ChatSkeleton position={'r-chat'} line={1} />
+                    </>
+                    : chatHistory.map((item, i) => {
+                        let sender;
 
-                    const timeOptions = {
-                        lastDay: 'dd LT',
-                        sameDay: 'LT',
-                        nextDay: 'dd LT',
-                        lastWeek: 'dd LT',
-                        nextWeek: 'dd LT',
-                        sameElse: 'LT[,] D MMMM, YYYY'
-                    },
-                        time = moment(item.createdAt).calendar(timeOptions),
-                        prevTime = i > 0 ? moment(chatHistory[i - 1].createdAt) : '';
-                    let timeDiff = moment(item.createdAt).diff(prevTime, 'minutes') < 17;
+                        const timeOptions = {
+                            lastDay: 'dd LT',
+                            sameDay: 'LT',
+                            nextDay: 'dd LT',
+                            lastWeek: 'dd LT',
+                            nextWeek: 'dd LT',
+                            sameElse: 'LT[,] D MMMM, YYYY'
+                        },
+                            time = moment(item.createdAt).calendar(timeOptions),
+                            prevTime = i > 0 ? moment(chatHistory[i - 1].createdAt) : '';
+                        let timeDiff = moment(item.createdAt).diff(prevTime, 'minutes') < 17;
 
-                    // console.log(moment(item.createdAt).diff(prevTime, 'second'))
+                        // console.log(moment(item.createdAt).diff(prevTime, 'second'))
 
-                    if (item.sender) {
-                        sender = JSON.parse(item.sender)
-                    }
-                    else {
-                        userID === item.authorID ? sender = true : sender = false
-                    }
+                        if (item.sender) {
+                            sender = JSON.parse(item.sender)
+                        }
+                        else {
+                            userID === item.authorID ? sender = true : sender = false
+                        }
 
-                    // console.log(item.authorID + ', ' + (chatHistory[i + 1] && chatHistory[i + 1].authorID))
-                    if (item.authorID === (chatHistory[i - 1] && chatHistory[i - 1].authorID)
-                        && moment(item.createdAt).diff(prevTime, 'second') < 61) {
-                        multiChat.push(item.content)
-                    }
-                    else {
-                        multiChat = [item.content];
-                        return (
-                            <Fragment key={i}>
-                                {!timeDiff && <div className='time-send'>{time}</div>}
-                                <ChatLine username={item.authorName.username}
-                                    avatar={avatar}
-                                    content={multiChat}
-                                    sender={sender}
-                                    time={time} />
-                            </Fragment>
-                        )
-                    }
-                })}
+                        // console.log(item.authorID + ', ' + (chatHistory[i + 1] && chatHistory[i + 1].authorID))
+                        if (item.authorID === (chatHistory[i - 1] && chatHistory[i - 1].authorID)
+                            && moment(item.createdAt).diff(prevTime, 'second') < 61) {
+                            multiChat.push(item.content)
+                        }
+                        else {
+                            multiChat = [item.content];
+                            return (
+                                <Fragment key={i}>
+                                    {!timeDiff && <div className='time-send'>{time}</div>}
+                                    <ChatLine username={item.authorName.username}
+                                        avatar={avatar}
+                                        content={multiChat}
+                                        sender={sender}
+                                        time={time} />
+                                </Fragment>
+                            )
+                        }
+                    })}
             </div>
             <button onClick={scrollToBottom} className='btn-scrolldown'><FontAwesomeIcon icon={faArrowDown} /></button>
             <ChatInput />

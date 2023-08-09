@@ -123,3 +123,18 @@
 .r-chat>.chat-wrap-details>.chat-wrap-avatar {
     margin-left: 5px;
 }
+
+/* DARK */
+
+.dark .l-chat>.chat-wrap-details .chat-wrap-content,
+.dark .r-chat>.chat-wrap-details .chat-wrap-content {
+    color: white;
+}
+
+.dark .l-chat>.chat-wrap-details .chat-wrap-content {
+    background-color: var(--lightwhite-color);
+}
+
+.dark .chat-list div {
+    color: var(--lightwhite-color);
+}

@@ -5,6 +5,7 @@ import 'moment/locale/vi';
 import FriendChat from '../../components/friendchat';
 import { SocketProvider, SocketContext } from '../../context/socket';
 import './home.css';
+import { UserSkeleton } from '../../components/ui/skeleton';
 
 function HomePage() {
 
@@ -47,7 +48,7 @@ function HomePage() {
         <SocketProvider>
             <div className="chat">
                 <div className="friend-chat-list">
-                    {isLoading ? <div>loading</div> : chatList.map((item, i) => {
+                    {isLoading ? <><UserSkeleton /><UserSkeleton /><UserSkeleton /></> : chatList.map((item, i) => {
                         let name = '', content = '';
                         item.members.length > 1 ? name = item.name : name = item.members[0].username
                         item.latestChat.length > 0 ? content = item.latestChat[0].content : content = ''

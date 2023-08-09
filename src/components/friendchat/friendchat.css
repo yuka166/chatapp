@@ -1,7 +1,7 @@
 .friend-chat {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 15px 10px;
     border-radius: 10px;
     transition: all .2s;
 }
@@ -24,7 +24,7 @@
     background-color: rgb(81 79 255 / 10%);
 }
 
-.friend-chat:hover {
+a.friend-chat:hover {
     box-shadow: 0px 0px 5px 0px var(--grey-color);
 }
 
@@ -34,6 +34,7 @@
 
 .friend-chat-name {
     color: var(--black-color);
+    font-weight: bold;
 }
 
 .friend-chat-latest {
@@ -60,6 +61,14 @@
     margin: 0 5px;
 }
 
-.friend-chat-name {
-    font-weight: bold;
+.dark .friend-chat-name {
+    color: white;
+}
+
+.dark .friend-chat-latest {
+    color: white;
+}
+
+.dark a.friend-chat:hover {
+    box-shadow: 0px 0px 5px 0px var(--lightwhite-color);
 }

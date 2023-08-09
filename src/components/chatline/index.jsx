@@ -33,13 +33,13 @@ function ChatLine(props) {
             if (typeof link !== 'string') {
                 link.map(link => {
                     content = content.map(item => {
-                        return item.replace(link, `<a href='${link}' target='_blank' rel='noopener'>${link}</a>`)
+                        return item.replace(link, `<a href='${link}' target='_blank' rel='noopener' rel='nofollow'>${link}</a>`)
                     })
                 })
             }
             else {
                 content = content.map(item => {
-                    return item.replace(link, `<a href='${link}' target='_blank' rel='noopener'>${link}</a>`)
+                    return item.replace(link, `<a href='${link}' target='_blank' rel='noopener' rel='nofollow'>${link}</a>`)
                 })
             }
         })
