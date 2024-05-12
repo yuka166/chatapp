@@ -50,7 +50,8 @@ function HomePage() {
                 <div className="friend-chat-list">
                     {isLoading ? <><UserSkeleton /><UserSkeleton /><UserSkeleton /></> : chatList.map((item, i) => {
                         let name = '', content = '';
-                        item.members.length > 1 ? name = item.name : name = item.members[0].username
+                        item.members.length > 1 ? name = item.name :
+                            item.members[0].displayname !== null ? name = item.members[0].displayname : name = item.members[0].username
                         item.latestChat.length > 0 ? content = item.latestChat[0].content : content = ''
                         if (item.members.length < 2) {
                             if (item.latestChat.length > 0) {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, memo, Fragment } from 'react';
+import { useState, useEffect, useContext, Fragment } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment/moment';
@@ -89,7 +89,10 @@ function ChatBox() {
             <div className='chatbox-details'>
                 <div className='chatbox-details-backbtn'><Link to='/'><FontAwesomeIcon icon={faArrowLeft} /></Link></div>
                 <div className='md-avatar'><img src={avatar} className='avatar' alt='' /></div>
-                {roomDetails.length > 0 && <div className='chatbox-details-name'>{roomDetails[0].members[0].username}</div>}
+                {roomDetails.length > 0 && <div className='chatbox-details-name'>
+                    {roomDetails[0].members[0].displayname !== null
+                        ? roomDetails[0].members[0].displayname
+                        : roomDetails[0].members[0].username}</div>}
             </div>
             <div className='chat-list'>
                 {isLoading

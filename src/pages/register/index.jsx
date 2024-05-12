@@ -49,7 +49,7 @@ function RegisterPage() {
         if (username.trim() !== '' && email.trim() !== ''
             && /[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/.test(email.trim())
             && password.trim() !== '' && password === rePassword) {
-            axios.post('https://nice-chat-app.fly.dev/auth/register',
+            axios.post('http://localhost:4000/auth/register',
                 {
                     username: username,
                     email: email,
