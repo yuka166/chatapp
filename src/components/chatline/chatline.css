@@ -85,6 +85,10 @@
     opacity: 0;
 }
 
+.dark .chat-wrap-content::after {
+    color: white;
+}
+
 .chat-wrap-content:not(:hover)::after {
     transition: all .2s;
 }

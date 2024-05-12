@@ -33,8 +33,9 @@
 .chat-list {
     display: flex;
     flex-direction: column;
-    padding: 2px 10px;
+    padding: 10px;
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .chat-list>div {

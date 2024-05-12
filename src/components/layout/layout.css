@@ -9,18 +9,46 @@
 .side-menu {
     padding: 20px 10px;
     border-right: 1px solid var(--grey-color);
-    position: relative;
 }
 
 .sub-menu {
     position: absolute;
-    right: -1px;
-    top: 0;
-    transform: translate(100%, 0);
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%);
     background-color: white;
-    box-shadow: 1px 1px 5px 0px rgb(0, 0, 0, .2);
-    padding: 15px;
+    box-shadow: 0 0 8px 2px rgb(0, 0, 0, .2);
+    padding: 20px;
     z-index: 999;
+    width: 50%;
+}
+
+.sub-menu>.close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    font-size: 0.75rem;
+}
+
+.sub-menu>form>div {
+    margin: 10px 0;
+}
+
+.sub-menu>form input {
+    outline: 0;
+    font-size: 1em;
+}
+
+.sub-menu>form>.update-btn>button {
+    background: var(--blue-color);
+    color: white;
+    width: 100%;
+    padding: .5rem 0;
+}
+
+.sub-menu>.lg-avatar {
+    margin: 0 auto;
 }
 
 .search-field {
@@ -66,6 +94,11 @@
 
 .side-menu svg {
     font-size: 1.3em;
+}
+
+.side-menu>.lg-avatar>button {
+    width: 100%;
+    height: 100%;
 }
 
 .menu-action>a {
