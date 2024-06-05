@@ -140,24 +140,28 @@
 .sm-avatar {
     width: 35px;
     min-width: 35px;
+    max-width: 35px;
     height: 35px;
 }
 
 .md-avatar {
     width: 42px;
     min-width: 42px;
+    max-width: 42px;
     height: 42px;
 }
 
 .lg-avatar {
     width: 50px;
     min-width: 50px;
+    max-width: 50px;
     height: 50px;
 }
 
 .xlg-avatar {
     width: 150px;
     min-width: 150px;
+    max-width: 150px;
     height: 150px;
 }
 
